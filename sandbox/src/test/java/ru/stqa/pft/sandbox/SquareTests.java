@@ -17,4 +17,10 @@ public class SquareTests {
         Assert.assertEquals(s.area(), 25.0);
     }
 
+    @Test
+    public void testSquarePerimeter() {
+        Square s = new Square(5);
+        Assert.assertEquals(s.perimeter(), 20.0);
+    }
+
 }
