@@ -6,36 +6,32 @@ public class InputData {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Введите текст:");
-        String s1 = sc.nextLine();
-
-        System.out.println("Введно: " + s1);
         int a = sc.nextInt();
-        if (a > 0) {
-            System.out.println("Ваше число положительное");
-        } else if (a < 0) {
-            System.out.println("Ваше число отрицательное");
-        } else {
-            System.out.println("Ваше число ноль");
-        }
         int b = sc.nextInt();
         int c = sc.nextInt();
-        System.out.println(a * b * c);
-
-        if (c > a && c > b) {
-            System.out.println(c);
-        } else if (b > a && b > c) {
-            System.out.println(b);
+        int d = sc.nextInt();
+        double price = a + (b/100.0);
+        double cost = c + (d/100.0);
+        double delta = Math.abs(cost - price);
+        int e = (int) delta/100;
+        int f = (int) delta % 100;
+        int result;
+        if (a < c) {
+            result = 1;
+        } else if (a == c && b == d) {
+            result = 2;
         } else {
-            System.out.println(a);
+            result = 0;
         }
-
-        int year = sc.nextInt();
-        if ((year % 4 == 0) && (year % 400 == 0) || (year % 100 != 0)) {
-            System.out.println("Yes");
-        } else {
-            System.out.println("No");
+        switch(result) {
+            case 1:
+                System.out.println(e + " " + f);
+                break;
+            case 2:
+                System.out.println("0 0");
+                break;
+            default:
+                System.out.println("мало");
         }
-
     }
 }
