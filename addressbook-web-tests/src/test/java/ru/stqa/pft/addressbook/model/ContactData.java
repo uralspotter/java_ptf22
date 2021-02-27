@@ -3,33 +3,13 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-    private int id;
-    private final String firstname;
-    private final String middlename;
-    private final String lastname;
-    private final String homephone;
-    private final String email;
+    private int id = Integer.MAX_VALUE;
+    private String firstname;
+    private String middlename;
+    private String lastname;
+    private String homephone;
+    private String email;
     private String group;
-
-    public ContactData(int id, String firstname, String middlename, String lastname, String homephone, String email, String group) {
-        this.id = id;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.homephone = homephone;
-        this.email = email;
-        this.group = group;
-    }
-
-    public ContactData(String firstname, String middlename, String lastname, String homephone, String email, String group) {
-        this.id = 0;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.homephone = homephone;
-        this.email = email;
-        this.group = group;
-    }
 
     public String getFirstName() {
         return firstname;
@@ -55,12 +35,43 @@ public class ContactData {
         return group;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public ContactData withId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public ContactData withFirstname(String firstname) {
+        this.firstname = firstname;
+        return this;
+    }
+
+    public ContactData withMiddlename(String middlename) {
+        this.middlename = middlename;
+        return this;
+    }
+
+    public ContactData withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
+    }
+
+    public ContactData withHomephone(String homephone) {
+        this.homephone = homephone;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
     @Override
