@@ -8,8 +8,15 @@ public class ContactData {
     private String middlename;
     private String lastname;
     private String homephone;
-    private String email;
+    private String mobilephone;
+    private String workphone;
+    private String emailfirst;
+    private String emailsecond;
+    private String emailthird;
+    private String address;
     private String group;
+    private String allPhones;
+    private String allEmails;
 
     public String getFirstName() {
         return firstname;
@@ -27,8 +34,12 @@ public class ContactData {
         return homephone;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMobilePhone() {
+        return mobilephone;
+    }
+
+    public String getWorkPhone() {
+        return workphone;
     }
 
     public String getGroup() {
@@ -37,6 +48,45 @@ public class ContactData {
 
     public int getId() {
         return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+    public String getEmailFirst() {
+        return emailfirst;
+    }
+
+    public String getEmailSecond() {
+        return emailsecond;
+    }
+
+    public String getEmailThird() {
+        return emailthird;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
     }
 
     public ContactData withId(int id) {
@@ -59,13 +109,33 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withHomephone(String homephone) {
+    public ContactData withHomePhone(String homephone) {
         this.homephone = homephone;
         return this;
     }
 
+    public ContactData withMobilePhone(String mobilephone) {
+        this.mobilephone = mobilephone;
+        return this;
+    }
+
+    public ContactData withWorkPhone(String workphone) {
+        this.workphone = workphone;
+        return this;
+    }
+
     public ContactData withEmail(String email) {
-        this.email = email;
+        this.emailfirst = email;
+        return this;
+    }
+
+    public ContactData withEmailSecond(String emailsecond) {
+        this.emailsecond = emailsecond;
+        return this;
+    }
+
+    public ContactData withEmailThird(String emailthird) {
+        this.emailthird = emailthird;
         return this;
     }
 
