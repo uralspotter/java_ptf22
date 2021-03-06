@@ -90,6 +90,7 @@ public class ContactHelper extends HelperBase  {
     public Contacts all() {
         Contacts contact = new Contacts();
         List<WebElement> rows = wd.findElements(By.name("entry"));
+        //System.out.println("rows count into method all " + rows.size());
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
             int id = Integer.parseInt(cells.get(0).findElement(By.name("selected[]")).getAttribute("id"));
@@ -116,5 +117,9 @@ public class ContactHelper extends HelperBase  {
         String emailthird = wd.findElement(By.name("email3")).getAttribute("value");
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withAddress(address).withEmail(emailfirst).withEmailSecond(emailsecond).withEmailThird(emailthird);
+    }
+
+    public int count() {
+        return wd.findElements(By.name("entry")).size();
     }
 }
