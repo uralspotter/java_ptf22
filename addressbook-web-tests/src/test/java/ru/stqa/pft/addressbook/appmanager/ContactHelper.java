@@ -28,6 +28,7 @@ public class ContactHelper extends HelperBase  {
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("home"), contactData.getHomePhone());
         type(By.name("email"), contactData.getLastName());
+        attach(By.name("photo"), contactData.getPhoto());
         if (creation) {
             if (contactData.getGroup() != null) {
                 new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
