@@ -3,6 +3,8 @@ package ru.stqa.pft.addressbook.tests;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -53,16 +55,12 @@ public class ContactCreationTests extends TestBase {
 
     @Test(dataProvider = "validDataFromJSON")
     public void testContactCreation(ContactData contact) throws Exception {
-        Contacts before = app.contact().all();
-        int beforecount = app.contact().count();
-        //System.out.println("Contacts count in variable before " + before.size());
+        Contacts before = app.db().contacts();
+        //int beforecount = app.contact().count();
         app.contact().create(contact);
-        Contacts after = app.contact().all();
-        int aftercount = app.contact().count();
-        //System.out.println("Contacts count in variable after " + after.size());
-        //assertThat(after.size(), equalTo(before.size() + 1));
-        assertThat(aftercount, equalTo(beforecount + 1));
-
+        Contacts after = app.db().contacts();
+        //int aftercount = app.contact().count();
+        assertThat(after.size(), equalTo(before.size() + 1));
         assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
     }
 
