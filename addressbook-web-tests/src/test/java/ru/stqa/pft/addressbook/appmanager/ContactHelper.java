@@ -7,8 +7,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase  {
 
@@ -30,8 +32,9 @@ public class ContactHelper extends HelperBase  {
         type(By.name("email"), contactData.getLastName());
         attach(By.name("photo"), contactData.getPhoto());
         if (creation) {
-            if (contactData.getGroup() != null) {
-                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if (contactData.getGroups().size() > 0) {
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
             }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -83,7 +86,7 @@ public class ContactHelper extends HelperBase  {
         navigationHelper.returnToContactPage();
     }
 
-    private void contactSelectedById(int id) {
+    public void contactSelectedById(int id) {
         wd.findElement(By.cssSelector(String.format("input[id='%s']", id))).click();
     }
 
@@ -120,5 +123,27 @@ public class ContactHelper extends HelperBase  {
 
     public int count() {
         return wd.findElements(By.name("entry")).size();
+    }
+
+    public void selectGroup(Contacts contactData) {
+        if (contactData.iterator().next().getGroups().size() > 0) {
+            Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.iterator().next().getGroups().iterator().next().getName());
+        }
+    }
+
+    public void addContactToGroup() {
+        wd.findElement(By.name("add")).click();
+    }
+
+    public void goToGroupPage(Contacts contactData) {
+        if (contactData.iterator().next().getGroups().size() > 0) {
+            Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
+            new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator().next().getGroups().iterator().next().getName());
+        }
+    }
+
+    public void removeContactFromGroup() {
+        wd.findElement(By.name("remove")).click();
     }
 }

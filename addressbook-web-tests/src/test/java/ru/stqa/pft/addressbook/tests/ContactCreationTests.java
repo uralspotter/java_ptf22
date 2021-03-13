@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -55,7 +56,9 @@ public class ContactCreationTests extends TestBase {
 
     @Test(dataProvider = "validDataFromJSON")
     public void testContactCreation(ContactData contact) throws Exception {
+        Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
+        contact.inGroup(groups.iterator().next());
         //int beforecount = app.contact().count();
         app.contact().create(contact);
         Contacts after = app.db().contacts();
