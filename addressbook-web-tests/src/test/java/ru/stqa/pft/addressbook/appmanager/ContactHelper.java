@@ -90,7 +90,6 @@ public class ContactHelper extends HelperBase  {
     public Contacts all() {
         Contacts contact = new Contacts();
         List<WebElement> rows = wd.findElements(By.name("entry"));
-        //System.out.println("rows count into method all " + rows.size());
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
             int id = Integer.parseInt(cells.get(0).findElement(By.name("selected[]")).getAttribute("id"));
