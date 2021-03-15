@@ -59,11 +59,11 @@ public class ContactCreationTests extends TestBase {
         Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
         contact.inGroup(groups.iterator().next());
-        //int beforecount = app.contact().count();
+        int beforecount = app.contact().count();
         app.contact().create(contact);
         Contacts after = app.db().contacts();
-        //int aftercount = app.contact().count();
-        assertThat(after.size(), equalTo(before.size() + 1));
+        int aftercount = app.contact().count();
+        assertThat(aftercount, equalTo(beforecount + 1));
         assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
     }
 
