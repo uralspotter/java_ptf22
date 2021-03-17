@@ -42,8 +42,26 @@ public class HBConnectionTest {
         session.getTransaction().commit();
         session.close();
         for ( ContactData contactData : result) {
-            System.out.println(contactData);
-            System.out.println(contactData.getGroups());
+            if (contactData.getGroups().size() != 0) {
+                System.out.println(contactData);
+                System.out.println(contactData.getGroups());
+                System.out.println(contactData.getGroups().size());
+                System.out.println(contactData.getGroups().stream().iterator().next().getId());
+                System.out.println(contactData.getGroups().stream().iterator().next().getName());
+            }
         }
+    }
+
+    @Test(enabled = false)
+    public void testGroupDataFromBD() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<GroupData> result = session.createQuery("from GroupData").list();
+        session.getTransaction().commit();
+        session.close();
+        for (GroupData groupData : result) {
+            System.out.println(groupData);
+        }
+        System.out.println(result.size());
     }
 }

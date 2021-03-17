@@ -126,7 +126,7 @@ public class ContactHelper extends HelperBase  {
     }
 
     public void selectGroup(Contacts contactData) {
-        if (contactData.iterator().next().getGroups().size() > 0) {
+        if (contactData.iterator().next().getGroups().size() > 1) {
             Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.iterator().next().getGroups().iterator().next().getName());
         }
