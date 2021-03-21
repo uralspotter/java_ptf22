@@ -1,14 +1,11 @@
 package ru.stqa.pft.mantis.appmanager;
 
-import javafx.animation.AnimationTimer;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -23,6 +20,7 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private UIHelper mantisHelper;
 
     public ApplicationManager(String browser)  {
         this.browser = browser;
@@ -90,5 +88,12 @@ public class ApplicationManager {
             jamesHelper = new JamesHelper(this);
         }
         return jamesHelper;
+    }
+
+    public UIHelper mantis() {
+        if (mantisHelper == null) {
+            mantisHelper = new UIHelper(this);
+        }
+        return mantisHelper;
     }
 }
