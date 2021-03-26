@@ -4,10 +4,11 @@ import org.openqa.selenium.By;
 
 public class UIHelper extends HelperBase {
 
-    private ApplicationManager app;
+    private final ApplicationManager app;
 
     public UIHelper(ApplicationManager app) {
         super(app);
+        this.app = app;
         wd = app.getDriver();
     }
 
@@ -24,17 +25,17 @@ public class UIHelper extends HelperBase {
     }
 
     public void openUserPage(String username) {
-        click(By.xpath("a[contains(text(), '" + username + "')]"));
+        click(By.linkText(username));
     }
 
     public void resetUserPassword() {
-        click(By.id("manage_user_reset_token"));
+        click(By.cssSelector("input[value='Сбросить пароль']"));
     }
 
     public void changePasswordUser(String changeLink, String password) {
         wd.get(changeLink);
         type(By.name("password"), password);
         type(By.name("password_confirm"), password);
-        click(By.cssSelector("input[value='Update_User']"));
+        click(By.cssSelector("button[type='submit']"));
     }
 }

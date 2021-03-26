@@ -29,7 +29,7 @@ public class ChangePasswordTests extends TestBase {
         app.mantis().goToUsersPage();
         app.mantis().openUserPage(username);
         app.mantis().resetUserPassword();
-        List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
         String changeLink = findConfirmationLink(mailMessages, email);
         app.mantis().changePasswordUser(changeLink, newpassword);
         assertTrue(app.newSession().login(username, newpassword));

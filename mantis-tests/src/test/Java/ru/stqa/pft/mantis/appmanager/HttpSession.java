@@ -32,10 +32,11 @@ public class HttpSession {
         params.add(new BasicNameValuePair("secure_session", "on"));
         params.add(new BasicNameValuePair("return", "index.php"));
         post.setEntity(new UrlEncodedFormEntity(params));
+        System.out.println(post.getHeaders("sess_id"));
         CloseableHttpResponse response = httpClient.execute(post);
         String body = geTextFrom(response);
         System.out.println(body);
-        return body.contains(String.format("<span class=\"italic\">%s</span>", username));
+        return body.contains(String.format("<span class=\"user-info\">%s</span>", username));
     }
 
     private String geTextFrom(CloseableHttpResponse response) throws IOException {
